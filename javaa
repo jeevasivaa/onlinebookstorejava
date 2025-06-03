@@ -1,0 +1,288 @@
+Ex. No. 7 – To study Version Control Tool
+
+Aim:
+To understand and implement version control using Git.
+
+Equipment / Software Required:
+Visual Studio Code installed
+Git installed and configured (git --version)
+GitHub or GitLab account
+
+Procedure:
+Git concepts:
+Repository  - A folder tracked by Git containing your project and version history
+Commit  - A snapshot of your changes
+Branch - A parallel version of your repository used to develop features
+Merge - Combining changes from one branch into another
+Pull Request  - A way to propose and review changes before merging (on platforms like GitHub)
+
+Steps:
+Step 1: Install and Set Up Git
+1.Check if Git is installed
+Open VS Code Terminal (`Ctrl+``) and run:
+git   - - version
+If Git is not installed, download and install it from https://git-scm.com/.
+2.Configure Git (First-Time Setup)
+Set up your name and email (needed for commits):
+git config - -global user.name "Your Name"
+git config - -global user.email "your-email@example.com"
+Step 2: Initialize a Git Repository in VS Code
+1.Open VS Code and create a new project folder.
+2.Open the terminal in VS Code (`Ctrl+``).
+3.Initialize Git in the project folder:
+git init
+4.Check the Git status:
+git status
+Output:
+On branch main
+No commits yet
+Step 3: Create and Commit Files
+1.Create a new file (index.html for example).
+2.Stage the file for commit:
+git add index.html
+3.Commit the file:
+git commit -m "Initial commit"
+4.Verify commit history:
+git log  - -oneline
+Step 4: Create and Manage Branches
+1.Check the current branch:
+git branch		
+Output:
+* main
+2.Create a new branch:
+git branch feature-branch
+3.Switch to the new branch:
+git checkout feature-branch
+Or
+git switch feature-branch
+4.Make changes and commit them to the new branch.
+
+Step 5: Merge Branches
+1.Switch back to the main branch:
+git checkout main
+2.Merge the feature-branch into main:
+git merge feature-branch
+3.Delete the merged branch:
+git branch -d feature-branch
+Step 6: Connect to a Remote Repository (GitHub)
+1.Create a new repository on GitHub.
+2.Add the remote repository:
+git remote add origin https://github.com/your-username/repository-name.git
+3.Push changes to GitHub:
+git push -u origin main
+Step 7: Create and Manage Pull Requests (PRs)
+1.On GitHub, go to the repository and click "Pull Requests".
+2.Click "New Pull Request" and select feature-branch to merge into main.
+3.Review the changes and click "Merge".
+
+Observations:
+Git provides version control and allows tracking changes efficiently.
+Branching and merging help in collaborative development.
+Using GitHub simplifies team collaboration with pull requests.
+Ex.No 9 : Perform Testing activities within an agile project
+
+Aim:
+To understand and implement Agile Testing using unit tests, integration tests, and end-to-end tests.
+
+Software required:
+VS Code (Download: https://code.visualstudio.com/)
+Extensions:
+-"Testing" (for test execution inside VS Code).
+-"Debugging" (for debugging test failures).
+PyUnit (for Python testing)
+
+Procedure:
+
+Step 1: Install Testing Frameworks:
+Installing PyUnit (Python)
+1.Install Python from https://www.python.org/downloads/.
+2.Open VS Code and create a new Python file (test_sample.py).
+3.Install unittest (PyUnit) using:
+pip install pytest
+Step 2: Write and Run Unit Tests:
+Unit Test in PyUnit (Python)
+1.Create a Python file: math_operations.py
+2.Write a function:
+def add(a, b):
+    return a + b
+3.Create a test file: test_math_operations.py
+4.Write unit tests using PyUnit:
+import unittest
+from math_operations import add
+
+class TestMathOperations(unittest.TestCase):
+    def test_add(self):
+        self.assertEqual(add(2, 3), 5)
+        self.assertEqual(add(-1, 1), 0)
+
+if __name__ == '__main__':
+    unittest.main()
+
+5.Run the test:
+python -m unittest test_math_operations.py
+
+6.Expected output:
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+OK
+
+Step 3: Write and Run Integration Tests:
+Integration Test in PyUnit:
+1.Modify math_operations.py:
+def multiply(a, b):
+    return a * b
+2.Update test_math_operations.py:
+from math_operations import multiply
+class TestMathOperations(unittest.TestCase):
+    def test_multiply(self):
+        self.assertEqual(multiply(2, 3), 6)
+3.Run:
+python -m unittest test_math_operations.py
+
+Step 4: Write and Run End-to-End (E2E) Tests:
+1.Install Selenium:
+pip install selenium
+2.Download ChromeDriver:
+Go to: https://sites.google.com/chromium.org/driver/
+Download the driver matching your Chrome version.
+Extract and place the driver in your project folder or system PATH.
+
+3.Write an E2E Test using PyUnit:
+import unittest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+class GoogleSearchE2ETest(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+
+    def test_google_search(self):
+        driver = self.driver
+        driver.get("https://www.google.com")
+        self.assertIn("Google", driver.title)
+
+        search_box = driver.find_element(By.NAME, "q")
+        search_box.send_keys("PyUnit E2E testing")
+        search_box.send_keys(Keys.RETURN)
+
+        time.sleep(2)  # Wait for results to load
+        results = driver.find_elements(By.CSS_SELECTOR, "div.g")
+        self.assertGreater(len(results), 0, "No search results found.")
+
+    def tearDown(self):
+        self.driver.quit()
+
+if __name__ == "__main__":
+    unittest.main()
+
+4.Run the Test:
+In terminal:
+python test_e2e_google.py
+
+5.Output:
+----------------------------------------------------------------------
+Ran 1 test in 5.123s
+OK
+
+
+
+
+
+
+
+
+
+
+Result:
+Thus the testing activities Unit test, Integration test and End-End test have been implemented and understood.
+Ex.No. 5 - Design Principles and Refactoring
+Aim:   
+To write refactor code and analyze code using extensions like "Refactor" and "Code Metrics" to measure the code complexity.
+ Equipment / Software Required:
+Any IDE supporting refactoring extensions (e.g., VS Code, Eclipse, PyCharm).
+"Refactor" and "CodeMetrics" extensions installed in the chosen IDE.
+Sample code for refactoring.
+Procedure:
+Step 1: Installation:
+Install VS Code and Search for and install the following extensions:  
+  1. **Python Extension** (if working with Python).  
+  2. **Refactor** – Helps with refactoring and improving code structure.  
+  3. **CodeMetrics** – Analyzes code complexity.  
+  4. **Pylance** (for better Python IntelliSense).  
+Step 2: Write Sample Code
+Write a simple program in any language that violates good design principles. Below is an example in Python. Create a new file and save this as a student.py file
+class Student:
+    def __init__(self, name, age, marks):
+        self.name = name
+        self.age = age
+        self.marks = marks
+    def display(self):
+        print("Name:", self.name)
+        print("Age:", self.age)
+        print("Marks:", self.marks)
+    def calculate_grade(self):
+        if self.marks >= 90:
+            return "A"
+        elif self.marks >= 75:
+            return "B"
+        else:
+            return "C"
+.
+Step 3: Analyze Code Quality
+Use "CodeMetrics" to analyze the complexity of functions.
+Identify areas where the code violates design principles (e.g., Single Responsibility Principle). 
+ Run the code with:  
+python student.py
+   To check the complexity run the following  
+   	pip install radon
+ radon cc student.py -a
+Step 4: Refactor the Code
+Separate concerns into different classes.
+Use meaningful method names and optimize logic.
+Apply appropriate design patterns if needed.
+Refactored Python code:
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def display(self):
+        print("Name:", self.name)
+        print("Age:", self.age)
+class GradeCalculator:
+    @staticmethod
+    def calculate_grade(marks):
+        if marks >= 90:
+            return "A"
+        elif marks >= 75:
+            return "B"
+        else:
+            return "C"
+Step 5: Validate Improvements
+Re-run "CodeMetrics" and compare the results.
+Verify that the code follows SOLID principles.
+ Step 6: Repeat in Other Languages
+Implement similar refactoring in Java, C++, or JavaScript.
+Compare the ease of refactoring in different languages.
+
+
+
+
+
+
+
+
+
+Output:
+
+
+
+
+
+
+
+
+Result:
+Thus the version control with Git and VS code has been implemented and understood.
